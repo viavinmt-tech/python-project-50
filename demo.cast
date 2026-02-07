@@ -1,0 +1,8 @@
+{"version": 2, "width": 195, "height": 21, "timestamp": 1770471046, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[0.03762, "o", "\u001b[?2004h\u001b]0;vinmt11@DESKTOP-G0BJAF4: ~/python-project-50\u0007\u001b[01;32mvinmt11@DESKTOP-G0BJAF4\u001b[00m:\u001b[01;34m~/python-project-50\u001b[00m$ "]
+[8.067473, "o", "\u001b[7mgendiff file1.json file2.json\u001b[27m"]
+[8.713613, "o", "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\bgendiff file1.json file2.json\r\n\u001b[?2004l\r"]
+[8.780052, "o", "First file: file1.json\r\nSecond file: file2.json\r\n"]
+[8.780864, "o", "{\r\n  - follow: False\r\n    host: hexlet.io\r\n  - proxy: 123.234.53.22\r\n  - timeout: 50\r\n  + timeout: 20\r\n  + verbose: True\r\n}\r\n"]
+[8.786909, "o", "\u001b[?2004h\u001b]0;vinmt11@DESKTOP-G0BJAF4: ~/python-project-50\u0007\u001b[01;32mvinmt11@DESKTOP-G0BJAF4\u001b[00m:\u001b[01;34m~/python-project-50\u001b[00m$ "]
+[11.661312, "o", "\u001b[?2004l\r\r\nexit\r\n"]
