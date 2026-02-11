@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "asciinema>=2.4.0",
+    "pyyaml>=6.0.1",
 ]
 
 [project.scripts]
@@ -21,24 +22,13 @@ packages = ["gendiff"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
+
 addopts = "-v"
 
 [tool.coverage.run]
 source = ["gendiff"]
-omit = ["*/tests/*"]
+omit = ["*/tests/*", "*/scripts/*"]
 
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "if self.debug:",
-    "if settings.DEBUG",
-    "raise AssertionError",
-    "raise NotImplementedError",
-    "if 0:",
-    "if __name__ == .__main__.:",
-    "class .*\bProtocol\b",
-    "@(abc\\.)?abstractmethod",
-]
+[tool.ruff]
+target-version = "py312"
+line-length = 88
