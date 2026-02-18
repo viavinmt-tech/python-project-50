@@ -15,7 +15,8 @@ def main():
         '--format',
         dest='format',
         metavar='FORMAT',
-        default='stylish',  # ← УСТАНОВЛЕНО ПО УМОЛЧАНИЮ!
+        default='stylish',
+        choices=['stylish', 'plain'],  # Добавлен plain
         help='set format of output (default: stylish)'
     )
     
@@ -30,3 +31,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+    
