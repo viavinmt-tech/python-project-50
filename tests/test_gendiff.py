@@ -1,5 +1,6 @@
 import os
 import pytest
+import json
 from gendiff import generate_diff
 
 
@@ -18,10 +19,10 @@ def read_file(path):
 @pytest.mark.parametrize('file1,file2,format_name,expected', [
     ('file1.json', 'file2.json', 'stylish', 'expected_result.txt'),
     ('file1.yml', 'file2.yml', 'stylish', 'expected_result.txt'),
-    
+
     ('file1_nested.json', 'file2_nested.json', 'stylish', 'expected_nested.txt'),
     ('file1_nested.yml', 'file2_nested.yml', 'stylish', 'expected_nested.txt'),
-    
+    ('file1_nested.json', 'file2_nested.json', 'json', 'expected_nested.json'),
     ('file1_nested.json', 'file2_nested.json', 'plain', 'expected_plain.txt'),
     ('file1_nested.yml', 'file2_nested.yml', 'plain', 'expected_plain.txt'),
 ])
@@ -75,3 +76,20 @@ def test_generate_diff_format_choices(format_name):
     
     result = generate_diff(file1, file2, format_name)
     assert isinstance(result, str)
+
+
+def test_generate_diff_json_format():
+    file1 = get_fixture_path('file1_nested.json')
+    file2 = get_fixture_path('file2_nested.json')
+    expected_path = get_fixture_path('expected_nested.json')
+    
+    result = generate_diff(file1, file2, 'json')
+    
+    try:
+        parsed_result = json.loads(result)
+        parsed_expected = json.loads(read_file(expected_path))
+        assert parsed_result == parsed_expected
+    except json.JSONDecodeError:
+        pytest.fail("Result is not valid JSON")
+
+

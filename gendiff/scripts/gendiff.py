@@ -16,7 +16,7 @@ def main():
         dest='format',
         metavar='FORMAT',
         default='stylish',
-        choices=['stylish', 'plain'],  # Добавлен plain
+        choices=['stylish', 'plain',  'json'], 
         help='set format of output (default: stylish)'
     )
     

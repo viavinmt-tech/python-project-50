@@ -4,3 +4,4 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=viavinmt-tech_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=viavinmt-tech_python-project-50)
 [![asciicast](https://asciinema.org/a/IPs2DNG6xDfzRpfY.svg)](https://asciinema.org/a/IPs2DNG6xDfzRpfY)
 [![asciicast](https://asciinema.org/a/9uL8jBaikKwK4vQK.svg)](https://asciinema.org/a/9uL8jBaikKwK4vQK)
+[![asciicast](https://asciinema.org/a/qPjIOL5qJ12UdMLe.svg)](https://asciinema.org/a/qPjIOL5qJ12UdMLe)

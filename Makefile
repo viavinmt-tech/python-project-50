@@ -1,10 +1,13 @@
-.PHONY: install test lint format check test-files
+.PHONY: install test lint format check
 
 install:
-	uv sync
+	uv sync --dev
 
 test:
-	uv run pytest -v
+	uv run pytest tests/ -v
+
+test-coverage:
+	uv run pytest --cov=gendiff tests/ --cov-report=term-missing
 
 lint:
 	uv run ruff check .
@@ -14,11 +17,3 @@ format:
 
 check: lint test
 
-test-files:
-	@echo "Creating test files..."
-	@mkdir -p tests/fixtures
-	@echo '{"host": "hexlet.io", "timeout": 50}' > file1.json
-	@echo '{"host": "hexlet.io", "timeout": 20}' > file2.json
-	@echo 'host: hexlet.io\ntimeout: 50' > file1.yml
-	@echo 'host: hexlet.io\ntimeout: 20' > file2.yml
-	@echo "Done!"
