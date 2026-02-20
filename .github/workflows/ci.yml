@@ -19,7 +19,8 @@ jobs:
           make install
       - name: Run linter and pytest
         run: |
-          make check
+          uv run ruff check .
+          uv run pytest tests/ -v --cov=gendiff --cov-report=xml
       - name: Run test coverage
         run: |
           make test-coverage

@@ -113,13 +113,6 @@ dependencies = [
     { name = "pyyaml" },
 ]
 
-[package.optional-dependencies]
-dev = [
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "ruff" },
-]
-
 [package.dev-dependencies]
 dev = [
     { name = "pytest" },
@@ -130,12 +123,8 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "asciinema", specifier = ">=2.4.0" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=7.0.0" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=4.0.0" },
     { name = "pyyaml", specifier = ">=6.0.1" },
-    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
 ]
-provides-extras = ["dev"]
 
 [package.metadata.requires-dev]
 dev = [
