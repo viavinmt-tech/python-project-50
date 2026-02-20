@@ -21,7 +21,9 @@ def _format_value(value: Any, depth: int) -> str:
         return json.dumps(value)
 
 
-def _format_line(prefix: str, key: str, value: Any, sign_indent: str, depth: int) -> str:
+def _format_line(
+    prefix: str, key: str, value: Any, sign_indent: str, depth: int
+) -> str:
     formatted = _format_value(value, depth)
     if formatted == "":
         return f"{sign_indent}{prefix} {key}: "
@@ -55,8 +57,12 @@ def _iter_node(node: Dict[str, Any], depth: int) -> List[str]:
             lines.append(f"{indent}    {key}: {value}")
 
     elif node_type == "changed":
-        lines.append(_format_line("-", key, node["old_value"], sign_indent, depth))
-        lines.append(_format_line("+", key, node["new_value"], sign_indent, depth))
+        lines.append(
+            _format_line("-", key, node["old_value"], sign_indent, depth)
+        )
+        lines.append(
+            _format_line("+", key, node["new_value"], sign_indent, depth)
+        )
 
     return lines
 
