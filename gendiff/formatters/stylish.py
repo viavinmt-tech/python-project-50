@@ -24,9 +24,7 @@ def _format_value(value: Any, depth: int) -> str:
 def _iter_node(node: Dict[str, Any], depth: int) -> List[str]:
     indent = "    " * (depth - 1)
     sign_indent = indent + "  "
-
     lines = []
-
     node_type = node["type"]
     key = node["key"]
 
