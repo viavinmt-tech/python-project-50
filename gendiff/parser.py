@@ -1,12 +1,13 @@
 import json
 import os
+
 import yaml
 
 
 def parse_file(filepath: str) -> dict:
     _, ext = os.path.splitext(filepath)
     ext = ext.lower()
-    
+
     with open(filepath, 'r') as file:
         if ext in ('.json',):
             return json.load(file)
