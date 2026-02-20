@@ -35,25 +35,27 @@ def _iter_node(node: Dict[str, Any], depth: int) -> List[str]:
         lines.append(f"{indent}    }}")
 
     elif node_type == "added":
+        prefix = "+"
         value = _format_value(node["value"], depth)
         if value == "":
-            lines.append(f"{sign_indent}+ {key} :")
+            lines.append(f"{sign_indent}{prefix} {key}:")
         else:
-            lines.append(f"{sign_indent}+ {key}: {value}")
+            lines.append(f"{sign_indent}{prefix} {key}: {value}")
 
     elif node_type == "removed":
+        prefix = "-"
         value = _format_value(node["value"], depth)
         if value == "":
-            lines.append(f"{sign_indent}- {key}: ")
+            lines.append(f"{sign_indent}{prefix} {key}: ")
         else:
-            lines.append(f"{sign_indent}- {key}: {value}")
+            lines.append(f"{sign_indent}{prefix} {key}: {value}")
 
     elif node_type == "unchanged":
         value = _format_value(node["value"], depth)
         if value == "":
-            lines.append(f"{sign_indent}  {key}: ")
+            lines.append(f"{indent}    {key}:")
         else:
-            lines.append(f"{sign_indent}  {key}: {value}")
+            lines.append(f"{indent}    {key}: {value}")
 
     elif node_type == "changed":
         old_value = _format_value(node["old_value"], depth)
@@ -65,7 +67,7 @@ def _iter_node(node: Dict[str, Any], depth: int) -> List[str]:
             lines.append(f"{sign_indent}- {key}: {old_value}")
 
         if new_value == "":
-            lines.append(f"{sign_indent}+ {key}: ")
+            lines.append(f"{sign_indent}+ {key}:")
         else:
             lines.append(f"{sign_indent}+ {key}: {new_value}")
 
