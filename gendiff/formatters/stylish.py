@@ -21,6 +21,16 @@ def _format_value(value: Any, depth: int) -> str:
         return json.dumps(value)
 
 
+def _format_line(
+    prefix: str, key: str, value: Any, sign_indent: str, depth: int
+) -> str:
+    """Format a line with consistent spacing."""
+    formatted = _format_value(value, depth)
+    if formatted == "":
+        return f"{sign_indent}{prefix} {key}: "  # всегда с пробелом после :
+    return f"{sign_indent}{prefix} {key}: {formatted}"
+
+
 def _iter_node(node: Dict[str, Any], depth: int) -> List[str]:
     indent = "    " * (depth - 1)
     sign_indent = indent + "  "
@@ -35,41 +45,26 @@ def _iter_node(node: Dict[str, Any], depth: int) -> List[str]:
         lines.append(f"{indent}    }}")
 
     elif node_type == "added":
-        prefix = "+"
-        value = _format_value(node["value"], depth)
-        if value == "":
-            lines.append(f"{sign_indent}{prefix} {key}:")
-        else:
-            lines.append(f"{sign_indent}{prefix} {key}: {value}")
+        lines.append(_format_line("+", key, node["value"], sign_indent, depth))
 
     elif node_type == "removed":
-        prefix = "-"
-        value = _format_value(node["value"], depth)
-        if value == "":
-            lines.append(f"{sign_indent}{prefix} {key}: ")
-        else:
-            lines.append(f"{sign_indent}{prefix} {key}: {value}")
+        lines.append(_format_line("-", key, node["value"], sign_indent, depth))
 
     elif node_type == "unchanged":
+        # Для unchanged используем indent, а не sign_indent
         value = _format_value(node["value"], depth)
         if value == "":
-            lines.append(f"{indent}    {key}:")
+            lines.append(f"{indent}    {key}: ")  # тоже с пробелом
         else:
             lines.append(f"{indent}    {key}: {value}")
 
     elif node_type == "changed":
-        old_value = _format_value(node["old_value"], depth)
-        new_value = _format_value(node["new_value"], depth)
-
-        if old_value == "":
-            lines.append(f"{sign_indent}- {key}: ")
-        else:
-            lines.append(f"{sign_indent}- {key}: {old_value}")
-
-        if new_value == "":
-            lines.append(f"{sign_indent}+ {key}:")
-        else:
-            lines.append(f"{sign_indent}+ {key}: {new_value}")
+        lines.append(
+            _format_line("-", key, node["old_value"], sign_indent, depth)
+        )
+        lines.append(
+            _format_line("+", key, node["new_value"], sign_indent, depth)
+        )
 
     return lines
 
