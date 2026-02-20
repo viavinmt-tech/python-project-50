@@ -9,32 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      
       - name: Install dependencies
         run: |
           pip install uv
           make install
-      
-      - name: DEBUG - Show installed packages
-        run: |
-          echo "=== PIP LIST ==="
-          uv run pip list
-          echo "=== CHECK PYTEST ==="
-          uv run python -c "import pytest; print('pytest OK')" || echo "pytest NOT FOUND"
-          echo "=== CHECK PYTEST-COV ==="
-          uv run python -c "import pytest_cov; print('pytest-cov OK')" || echo "pytest-cov NOT FOUND"
-      
-      - name: Run linter and tests
+          uv pip install pytest pytest-cov
+      - name: Run linter and pytest
         run: |
           uv run ruff check .
           uv run pytest tests/ -v --cov=gendiff --cov-report=xml
-      
-      - name: SonarQube Scan
+      - name: Run test coverage
+        run: |
+          make test-coverage
+      - name: SonarQubeScan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
