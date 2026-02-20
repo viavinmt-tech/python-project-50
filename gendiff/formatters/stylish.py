@@ -21,13 +21,10 @@ def _format_value(value: Any, depth: int) -> str:
         return json.dumps(value)
 
 
-def _format_line(
-    prefix: str, key: str, value: Any, sign_indent: str, depth: int
-) -> str:
-    """Format a line with consistent spacing."""
+def _format_line(prefix: str, key: str, value: Any, sign_indent: str, depth: int) -> str:
     formatted = _format_value(value, depth)
     if formatted == "":
-        return f"{sign_indent}{prefix} {key}: "  # всегда с пробелом после :
+        return f"{sign_indent}{prefix} {key}: "
     return f"{sign_indent}{prefix} {key}: {formatted}"
 
 
@@ -51,20 +48,15 @@ def _iter_node(node: Dict[str, Any], depth: int) -> List[str]:
         lines.append(_format_line("-", key, node["value"], sign_indent, depth))
 
     elif node_type == "unchanged":
-        # Для unchanged используем indent, а не sign_indent
         value = _format_value(node["value"], depth)
         if value == "":
-            lines.append(f"{indent}    {key}: ")  # тоже с пробелом
+            lines.append(f"{indent}    {key}: ")
         else:
             lines.append(f"{indent}    {key}: {value}")
 
     elif node_type == "changed":
-        lines.append(
-            _format_line("-", key, node["old_value"], sign_indent, depth)
-        )
-        lines.append(
-            _format_line("+", key, node["new_value"], sign_indent, depth)
-        )
+        lines.append(_format_line("-", key, node["old_value"], sign_indent, depth))
+        lines.append(_format_line("+", key, node["new_value"], sign_indent, depth))
 
     return lines
 

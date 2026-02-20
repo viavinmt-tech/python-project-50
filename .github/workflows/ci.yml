@@ -16,8 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install uv
-          make install
-          uv pip install pytest pytest-cov
+          uv sync --dev
       - name: Run linter and pytest
         run: |
           uv run ruff check .
