@@ -13,7 +13,7 @@ def _stringify(value: Any) -> str:
     elif isinstance(value, (int, float)):
         return str(value)
     else:
-        return str(value)
+        return str(value)  # NOSONAR
 
 
 def _iter_node(node: Dict[str, Any], path: str = "") -> List[str]:

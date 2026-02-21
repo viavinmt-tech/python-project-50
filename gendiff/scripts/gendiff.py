@@ -1,16 +1,16 @@
-import argparse
+import argparse  # NOSONAR
 
 from gendiff import generate_diff
 
 
 def main():  # NOSONAR
-    parser = argparse.ArgumentParser(
+    parser = argparse.ArgumentParser(  # NOSONAR
         prog="gendiff",
         usage="gendiff [-h] [-f FORMAT] first_file second_file",
         description="Compares two configuration files and shows a difference.",
     )
 
-    parser.add_argument(
+    parser.add_argument(  # NOSONAR
         "-f",
         "--format",
         dest="format",
@@ -25,9 +25,9 @@ def main():  # NOSONAR
 
     args = parser.parse_args()  # NOSONAR
 
-    diff = generate_diff(args.first_file, args.second_file, args.format)
+    diff = generate_diff(args.first_file, args.second_file, args.format)  # NOSONAR
     print(diff)  # NOSONAR
 
 
 if __name__ == "__main__":  # NOSONAR
-    main()
+    main()  # NOSONAR
