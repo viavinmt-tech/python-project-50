@@ -1,4 +1,4 @@
-.PHONY: install test lint format check
+.PHONY: install test lint format check test-coverage
 
 install:
 	uv sync --dev
@@ -15,3 +15,5 @@ format:
 
 check: lint test
 
+test-coverage:
+	uv run pytest tests/ -v --cov=gendiff --cov-report=xml --cov-report=term-missing
