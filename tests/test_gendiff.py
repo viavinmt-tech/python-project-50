@@ -1,3 +1,4 @@
+# NOSONAR
 import json  # NOSONAR
 import os  # NOSONAR
 

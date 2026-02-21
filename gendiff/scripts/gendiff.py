@@ -25,7 +25,9 @@ def main():  # NOSONAR
 
     args = parser.parse_args()  # NOSONAR
 
-    diff = generate_diff(args.first_file, args.second_file, args.format)  # NOSONAR
+    diff = generate_diff(  # NOSONAR
+        args.first_file, args.second_file, args.format # NOSONAR
+    )  # NOSONAR
     print(diff)  # NOSONAR
 
 

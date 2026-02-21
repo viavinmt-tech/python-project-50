@@ -27,7 +27,12 @@ addopts = "-v"
 
 [tool.coverage.run]
 source = ["gendiff"]
-omit = ["*/tests/*", "*/scripts/*"]
+omit = [
+    "*/tests/*",
+    "*/scripts/*",
+    "*/__pycache__/*",
+    "*/.pytest_cache/*",
+]
 
 [tool.ruff]
 target-version = "py312"
