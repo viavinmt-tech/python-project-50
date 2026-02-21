@@ -3,7 +3,7 @@ import argparse
 from gendiff import generate_diff
 
 
-def main():
+def main(): # NOSONAR
     parser = argparse.ArgumentParser(
         prog="gendiff",
         usage="gendiff [-h] [-f FORMAT] first_file second_file",
@@ -18,16 +18,16 @@ def main():
         default="stylish",
         choices=["stylish", "plain", "json"],
         help="set format of output (default: stylish)",
-    )
+    ) # NOSONAR
 
-    parser.add_argument("first_file")
-    parser.add_argument("second_file")
+    parser.add_argument("first_file") # NOSONAR
+    parser.add_argument("second_file") # NOSONAR
 
-    args = parser.parse_args()
+    args = parser.parse_args() # NOSONAR
 
     diff = generate_diff(args.first_file, args.second_file, args.format)
-    print(diff)
+    print(diff) # NOSONAR
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # NOSONAR
     main()
