@@ -14,8 +14,8 @@ def parse_file(filepath: str) -> dict:
         elif ext in (".yml", ".yaml"):
             return yaml.safe_load(file)
         else:
-            raise ValueError(f"Unsupported file format: {ext}") # NOSONAR
+            raise ValueError(f"Unsupported file format: {ext}")  # NOSONAR
 
 
 def get_file_extension(filepath: str) -> str:
-    return os.path.splitext(filepath)[1].lower().replace(".", "") # NOSONAR
+    return os.path.splitext(filepath)[1].lower().replace(".", "")  # NOSONAR
