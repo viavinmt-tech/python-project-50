@@ -4,7 +4,7 @@ install:
 	uv sync --dev
 
 test:
-	uv run pytest tests/ -v --cov=gendiff
+	uv run python -m pytest tests/ -v --cov=gendiff
 
 lint:
 	uv run ruff check .
@@ -16,4 +16,4 @@ format:
 check: lint test
 
 test-coverage:
-	uv run pytest tests/ -v --cov=gendiff --cov-report=xml --cov-report=term-missing
+	uv run python -m pytest tests/ -v --cov=gendiff --cov-report=xml --cov-report=term-missing
