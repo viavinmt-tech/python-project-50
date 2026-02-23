@@ -9,22 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      
       - name: Install dependencies
         run: |
           pip install uv
           uv sync --dev
+      
       - name: Run linter and pytest
         run: |
           uv run ruff check .
           uv run python -m pytest tests/ -v --cov=gendiff --cov-report=xml
-      - name: Run test coverage
-        run: |
-          make test-coverage
-      - name: SonarQubeScan
+      
+      - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@fd88b7d7ccbaefd23d8f36f73b59db7a3d246602
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -32,4 +33,9 @@ jobs:
           args: |-
             "-Dsonar.projectKey=viavinmt-tech_python-project-50"
             "-Dsonar.organization=viavinmt-tech"
+            "-Dsonar.sources=gendiff"
+            "-Dsonar.tests=tests"
+            "-Dsonar.test.inclusions=**/test_*.py"
+            "-Dsonar.coverage.exclusions=**/tests/**/*,**/scripts/**/*"
+            "-Dsonar.exclusions=**/tests/**/*,**/scripts/**/*,**/__pycache__/**/*"
             "-Dsonar.python.coverage.reportPaths=coverage.xml"
