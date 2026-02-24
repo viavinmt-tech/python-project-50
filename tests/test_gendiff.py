@@ -10,7 +10,7 @@ from gendiff import generate_diff  # NOSONAR
 def get_fixture_path(filename):  # NOSONAR
 
     current_dir = os.path.dirname(__file__)  # NOSONAR
-    return os.path.join(current_dir, "fixtures", filename)  # NOSONAR
+    return os.path.join(current_dir, "test_data", filename)  # NOSONAR
 
 
 def read_file(path):  # NOSONAR
